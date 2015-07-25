@@ -33,6 +33,7 @@ html lang="en"
             li.active= link_to "Link 1", "#"
             li= link_to "Link 2", "#"
             li= link_to "Link 3", "#"
+            = link_to "Sign out", destroy_user_session_path, type: 'button', method: :delete, class: 'btn bnt-default navbar-btn pull-right'
 
     .container
       .row
