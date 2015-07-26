@@ -32,7 +32,10 @@ class ExpensesController < ApplicationController
         format.html { redirect_to expenses_path, notice: 'Expense was successfully created.' }
         format.json { render :show, status: :created, location: @expense }
       else
-        format.html { render :new }
+        format.html do
+          flash[:error] = @expense.errors.full_messages.first
+          render :new
+        end
         format.json { render json: @expense.errors, status: :unprocessable_entity }
       end
     end
