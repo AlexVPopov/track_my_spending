@@ -24,6 +24,7 @@ gem 'thin'
 gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'money-rails'
+gem 'rails_12factor'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
