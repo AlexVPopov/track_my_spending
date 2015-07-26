@@ -53,6 +53,7 @@ GEM
     builder (3.2.2)
     byebug (5.0.0)
       columnize (= 0.9.0)
+    coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -90,6 +91,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    method_source (0.8.2)
     mime-types (2.6.1)
     mini_portile (0.6.2)
     minitest (5.7.0)
@@ -107,6 +109,15 @@ GEM
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
     pg (0.18.2)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-byebug (3.2.0)
+      byebug (~> 5.0)
+      pry (~> 0.10)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -175,6 +186,7 @@ GEM
       activesupport (>= 3.1, < 5.0)
       railties (>= 3.1, < 5.0)
       slim (~> 3.0)
+    slop (3.6.0)
     spring (1.3.6)
     sprockets (3.2.0)
       rack (~> 1.0)
@@ -212,7 +224,6 @@ DEPENDENCIES
   bootstrap-sass
   bootstrap-sass-extras
   bootswatch-rails
-  byebug
   coffee-rails (~> 4.1.0)
   devise
   devise-bootstrap-views
@@ -220,6 +231,8 @@ DEPENDENCIES
   jquery-rails
   money-rails
   pg
+  pry-byebug
+  pry-rails
   rails (= 4.2.3)
   rspec-rails
   sass-rails (~> 5.0)
