@@ -2,7 +2,11 @@
   .form-group
     = f.label :amount, :class => 'control-label col-md-2'
     .col-md-10
-      = f.text_field :amount, :class => 'text_field form-control'
+      = f.number_field :amount, :class => 'text_field form-control', step: 0.1
+  .form-group
+    = f.label :date, :class => 'control-label col-md-2'
+    .col-md-10
+      = f.date_field :date, :class => 'text_field form-control'
   .form-group
     .col-md-offset-2.col-md-10
       = f.submit nil, :class => 'btn btn-primary'

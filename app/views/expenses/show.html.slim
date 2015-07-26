@@ -7,9 +7,9 @@ div class="page-header"
       dt.label.label-default= model_class.human_attribute_name(:amount)
       dd
         pre.prettyprint= @expense.amount
-      dt.label.label-default= model_class.human_attribute_name(:user_id)
+      dt.label.label-default= model_class.human_attribute_name(:date)
       dd
-        pre.prettyprint= @expense.user_id
+        pre.prettyprint=l @expense.date, format: :default
 
 .form-group
   = link_to t('.back', :default => t("helpers.links.back")), expenses_path, :class => 'btn btn-default'
