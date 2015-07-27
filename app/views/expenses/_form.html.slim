@@ -4,9 +4,13 @@
     .col-md-4
       = f.number_field :amount, class: 'text_field form-control', step: 0.1
   .form-group
+    = f.label :tag_list, class: 'control-label col-md-2'
+    .col-md-4
+      = f.text_field :tag_list, value: @expense.all_tags_list.to_s, class: 'text_field form-control'
+  .form-group
     = f.label :date, class: 'control-label col-md-2'
     .col-md-4
-      = f.date_field :date, class: 'text_field form-control'
+      = f.date_field :date, value: Time.zone.today, class: 'text_field form-control'
   .form-group
     .col-md-offset-2.col-md-10
       = f.submit nil, class: 'btn btn-primary'

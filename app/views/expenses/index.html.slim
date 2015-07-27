@@ -5,15 +5,17 @@ table.table.table-striped
   thead
     tr
       th= model_class.human_attribute_name(:id)
-      th= model_class.human_attribute_name(:amount)
       th= model_class.human_attribute_name(:date)
+      th= model_class.human_attribute_name(:amount)
+      th= model_class.human_attribute_name(:tag_list)
       th=t '.actions', :default => t("helpers.actions")
   tbody
     - @expenses.each do |expense|
       tr
         td= expense.id
-        td=humanized_money_with_symbol expense.amount
         td=l expense.date, format: :default
+        td=humanized_money_with_symbol expense.amount
+        td= expense.all_tags_list
         td
           = link_to expense_path(expense), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do
             = glyph 'info-sign'

@@ -7,6 +7,9 @@ div class="page-header"
       dt.label.label-default= model_class.human_attribute_name(:amount)
       dd
         pre.prettyprint= @expense.amount
+      dt.label.label-default= model_class.human_attribute_name(:tag_list)
+      dd
+        pre.prettyprint= @expense.all_tags_list
       dt.label.label-default= model_class.human_attribute_name(:date)
       dd
         pre.prettyprint=l @expense.date, format: :default
