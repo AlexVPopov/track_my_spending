@@ -4,4 +4,5 @@ class Expense < ActiveRecord::Base
   monetize :amount_stotinkas, numericality: {greater_than_or_equal_to: 0.1}
 
   validates :date, presence: true
+  validates :user, presence: true
 end

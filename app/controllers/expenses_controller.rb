@@ -5,7 +5,7 @@ class ExpensesController < ApplicationController
   # GET /expenses
   # GET /expenses.json
   def index
-    @expenses = Expense.where(user_id: current_user.id).order(:created_at)
+    @expenses = current_user.expenses
   end
 
   # GET /expenses/1
