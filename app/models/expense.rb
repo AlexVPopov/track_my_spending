@@ -5,4 +5,6 @@ class Expense < ActiveRecord::Base
 
   validates :date, presence: true
   validates :user, presence: true
+
+  acts_as_ordered_taggable
 end

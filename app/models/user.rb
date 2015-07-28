@@ -5,4 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :expenses, -> { order :date }, dependent: :destroy
+
+  acts_as_tagger
 end

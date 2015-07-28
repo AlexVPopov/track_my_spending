@@ -25,6 +25,7 @@ gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'money-rails'
 gem 'rails_12factor'
+gem 'acts-as-taggable-on'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
