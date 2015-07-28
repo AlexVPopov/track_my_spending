@@ -33,6 +33,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'quiet_assets'
   gem 'spring'
   gem 'web-console', '~> 2.0'
 end
