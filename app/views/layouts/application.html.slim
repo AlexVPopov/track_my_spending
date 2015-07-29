@@ -22,10 +22,11 @@ html lang="en"
   body
     nav.navbar.navbar-default.navbar-fixed-top role="navigation"
       .container
-        .navbar-header
+        .navbar-header.pull-left
           = link_to 'TrackMySpending', root_path, class: 'navbar-brand'
-          = link_to "Sign out", destroy_user_session_path, type: 'button', method: :delete, class: 'btn bnt-default navbar-btn pull-right'
-
+        .navbar-header.pull-right
+          = link_to destroy_user_session_path, type: 'button', method: :delete, class: 'btn btn-primary bnt-default navbar-btn pull-right' do
+            <span class="glyphicon glyphicon-log-out"></span>  Sign out
     .container
       .row
         .col-md-12
