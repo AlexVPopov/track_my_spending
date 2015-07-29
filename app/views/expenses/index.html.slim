@@ -4,7 +4,6 @@
 table.table.table-striped
   thead
     tr
-      th= model_class.human_attribute_name(:id)
       th= model_class.human_attribute_name(:date)
       th= model_class.human_attribute_name(:amount)
       th= model_class.human_attribute_name(:tag_list)
@@ -12,7 +11,6 @@ table.table.table-striped
   tbody
     - @expenses.each do |expense|
       tr
-        td= expense.id
         td=l expense.date, format: :default
         td=humanized_money_with_symbol expense.amount
         td= expense.all_tags_list
