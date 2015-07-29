@@ -24,7 +24,7 @@ gem 'thin'
 gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'money-rails'
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 gem 'acts-as-taggable-on'
 
 # Use Capistrano for deployment
