@@ -2,7 +2,11 @@
   .form-group
     = f.label :amount, class: 'control-label col-md-2'
     .col-md-4
-      = f.number_field :amount, class: 'text_field form-control', step: 0.1
+      = f.number_field :amount,
+                       value:        amount(@expense),
+                       step:         0.1,
+                       placeholder: '0.00',
+                       class:       'text_field form-control'
   .form-group
     = f.label :tag_list, class: 'control-label col-md-2'
     .col-md-4
