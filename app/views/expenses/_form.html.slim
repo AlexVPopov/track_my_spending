@@ -10,7 +10,7 @@
   .form-group
     = f.label :tag_list, class: 'control-label col-md-2'
     .col-md-4
-      = f.text_field :tag_list, value: @expense.all_tags_list.to_s, class: 'text_field form-control'
+      = f.hidden_field :tag_list, value: @expense.all_tags_list.to_s, class: 'text_field form-control'
   .form-group
     = f.label :date, class: 'control-label col-md-2'
     .col-md-4
