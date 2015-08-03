@@ -12,6 +12,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'slim-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # See https://github.com/rails/execjs#readme for more supported runtimes
