@@ -28,6 +28,7 @@ gem 'money-rails'
 gem 'rails_12factor', group: :production
 gem 'acts-as-taggable-on'
 gem 'newrelic_rpm'
+gem 'figaro'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
