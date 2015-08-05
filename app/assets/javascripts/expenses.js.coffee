@@ -1,4 +1,6 @@
 $ ->
+  $('.datatable').DataTable()
+
   $('#expense_tag_list').select2
     ajax:
       url: '/tags'
