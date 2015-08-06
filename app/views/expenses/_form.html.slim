@@ -10,7 +10,7 @@
   .form-group
     = f.label :tag_list, class: 'control-label col-md-2'
     .col-md-4
-      = f.hidden_field :tag_list, value: @expense.all_tags_list.to_s, class: 'text_field form-control'
+      = f.select :tag_list, options_from_collection_for_select(@expense.tags, 'name', 'name', @expense.all_tags_list), {}, {multiple: true, class: 'form-control', data: { selected_tags: @expense.all_tags_list }}
   .form-group
     = f.label :date, class: 'control-label col-md-2'
     .col-md-4
