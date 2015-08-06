@@ -1,5 +1,6 @@
 $ ->
-  $('.datatable').DataTable()
+  $('.datatable').DataTable
+    paging: false
 
   $('#expense_tag_list').select2
     ajax:
