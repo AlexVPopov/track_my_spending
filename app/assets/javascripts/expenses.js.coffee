@@ -4,25 +4,13 @@ $ ->
   $('#expense_tag_list').select2
     ajax:
       url: '/tags'
-      dataType: 'json'
-      data: (query) ->
-              'query=' + encodeURIComponent(query)
-      results:
-        (data, page) ->
+      data:
+        (query) ->
+          query: query.term
+      processResults:
+        (data) ->
           results: data
       cache: true
-      quietMillis: 250
-    createSearchChoice:
-      (term) ->
-        id: $.trim(term)
-        text: $.trim(term)
-    initSelection:
-      (element, callback) ->
-        data = []
-        tags = element.val().split(",")
-        for tag in tags
-          data.push({id: $.trim(tag), text: $.trim(tag)})
-        callback(data)
-    placeholder: 'Enter a tag'
+    placeholder: 'Enter tag(s)'
     tags: true
-    tokenSeparators: [","]
+    tokenSeparators: [',']
