@@ -25,8 +25,11 @@ html lang="en"
         .navbar-header.pull-left
           = link_to 'TrackMySpending', root_path, class: 'navbar-brand'
         .navbar-header.pull-right
-          = link_to destroy_user_session_path, type: 'button', method: :delete, class: 'btn btn-primary bnt-default navbar-btn pull-right' do
-            <span class="glyphicon glyphicon-log-out"></span>  Sign out
+          = link_to "#{glyph('log-out')} Sign out".html_safe,
+                    destroy_user_session_path,
+                    type: 'button',
+                    method: :delete,
+                    class: 'btn bnt-default navbar-btn'
     .container
       .row
         .col-md-12
