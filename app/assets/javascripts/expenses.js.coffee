@@ -1,6 +1,10 @@
 $ ->
   $('.datatable').DataTable
     paging: false
+    columnDefs: [
+      orderable: false,
+      targets: [1, 3]
+    ]
 
   $('#expense_tag_list').select2
     ajax:
