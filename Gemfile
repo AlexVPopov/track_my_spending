@@ -38,8 +38,14 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'fabrication'
+  gem 'ffaker'
   gem 'quiet_assets'
   gem 'spring'
   gem 'web-console', '~> 2.0'
+end
+
+group :test do
+  gem 'shoulda-matchers', '~> 3.0.rc1'
 end
 
