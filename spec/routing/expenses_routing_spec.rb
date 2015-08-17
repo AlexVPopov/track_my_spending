@@ -1,39 +1,21 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe ExpensesController, type: :routing do
-  describe "routing" do
+  describe 'routing' do
+    it { should route(:get, '/expenses').to(action: :index) }
 
-    it "routes to #index" do
-      expect(:get => "/expenses").to route_to("expenses#index")
-    end
+    it { should route(:get, '/expenses/new').to(action: :new) }
 
-    it "routes to #new" do
-      expect(:get => "/expenses/new").to route_to("expenses#new")
-    end
+    it { should route(:get, '/expenses/1').to(action: :show, id: 1) }
 
-    it "routes to #show" do
-      expect(:get => "/expenses/1").to route_to("expenses#show", :id => "1")
-    end
+    it { should route(:get, '/expenses/1/edit').to(action: :edit, id: 1) }
 
-    it "routes to #edit" do
-      expect(:get => "/expenses/1/edit").to route_to("expenses#edit", :id => "1")
-    end
+    it { should route(:post, '/expenses').to(action: :create) }
 
-    it "routes to #create" do
-      expect(:post => "/expenses").to route_to("expenses#create")
-    end
+    it { should route(:put, '/expenses/1').to(action: :update, id: 1) }
 
-    it "routes to #update via PUT" do
-      expect(:put => "/expenses/1").to route_to("expenses#update", :id => "1")
-    end
+    it { should route(:patch, '/expenses/1').to(action: :update, id: 1) }
 
-    it "routes to #update via PATCH" do
-      expect(:patch => "/expenses/1").to route_to("expenses#update", :id => "1")
-    end
-
-    it "routes to #destroy" do
-      expect(:delete => "/expenses/1").to route_to("expenses#destroy", :id => "1")
-    end
-
+    it { should route(:delete, '/expenses/1').to(action: :destroy, id: 1) }
   end
 end
