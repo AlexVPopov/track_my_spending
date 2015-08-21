@@ -15,6 +15,7 @@ RSpec.describe ExpensesController, type: :controller do
     end
 
     it { should render_template :index }
+    it { should respond_with :success }
   end
 
   describe 'GET #show' do
@@ -27,6 +28,7 @@ RSpec.describe ExpensesController, type: :controller do
     end
 
     it { should render_template :show }
+    it { should respond_with :success }
   end
 
   describe 'GET #new' do
@@ -40,6 +42,7 @@ RSpec.describe ExpensesController, type: :controller do
 
     it { should render_template :new }
     it { should render_template partial: '_form' }
+    it { should respond_with :success }
   end
 
   describe 'GET #edit' do
@@ -55,6 +58,7 @@ RSpec.describe ExpensesController, type: :controller do
 
     it { should render_template :edit }
     it { should render_template partial: '_form' }
+    it { should respond_with :success }
   end
 
   describe 'POST #create' do
@@ -79,6 +83,7 @@ RSpec.describe ExpensesController, type: :controller do
 
       it { should redirect_to action: :index }
       it { should set_flash['notice'].to 'Expense was successfully created.' }
+      it { should respond_with :found }
     end
 
     context 'with invalid params' do
@@ -95,6 +100,7 @@ RSpec.describe ExpensesController, type: :controller do
       it { should render_template :new }
       it { should render_template partial: '_form' }
       it { should set_flash['error'].to assigns(:expense).errors.full_messages.first }
+      it { should respond_with :success }
     end
   end
 
@@ -135,6 +141,8 @@ RSpec.describe ExpensesController, type: :controller do
       it 'redirects to the expense' do
         should redirect_to(expense)
       end
+
+      it { should respond_with :found }
     end
 
     context 'with invalid params' do
@@ -151,6 +159,7 @@ RSpec.describe ExpensesController, type: :controller do
       it { should set_flash['error'].to assigns(:expense).errors.full_messages.first }
       it { should render_template :edit }
       it { should render_template partial: '_form' }
+      it { should respond_with :success }
     end
   end
 
@@ -164,6 +173,11 @@ RSpec.describe ExpensesController, type: :controller do
     it do
       delete :destroy, {id: expense.to_param}
       should redirect_to(action: :index)
+    end
+
+    it do
+      delete :destroy, {id: expense.to_param}
+      should respond_with :found
     end
   end
 end

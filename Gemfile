@@ -47,5 +47,9 @@ end
 
 group :test do
   gem 'shoulda-matchers', '~> 3.0.rc1'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'poltergeist'
+  gem 'database_cleaner'
 end
 
