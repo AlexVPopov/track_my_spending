@@ -22,7 +22,7 @@ html lang="en"
     nav.navbar.navbar-default.navbar-fixed-top role="navigation"
       .container
         .navbar-header.pull-left
-          = link_to 'TrackMySpending', root_path, class: 'navbar-brand'
+          = link_to 'TrackMySpending', authenticated_root_path, class: 'navbar-brand'
         .navbar-header.pull-right
           = link_to "#{glyph('log-out')} Sign out".html_safe,
                     destroy_user_session_path,

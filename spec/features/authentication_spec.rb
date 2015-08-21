@@ -33,6 +33,25 @@ feature 'Sign out' do
   end
 end
 
+feature 'Root path' do
+  given(:user) { Fabricate :user }
+
+  scenario 'The user sees the login page if not authenticated' do
+    visit '/'
+
+    expect(page).to have_content 'Sign in'
+    expect(page.current_path).to eq unauthenticated_root_path
+  end
+
+  scenario 'The user sees the expneses#index page if authenticated' do
+    login_as(user, :scope => :user)
+    visit '/'
+
+    expect(page).to have_content 'Expenses'
+    expect(page.current_path).to eq authenticated_root_path
+  end
+end
+
 def submit_credentials(email, password)
   within('#new_user') do
     fill_in 'Email', with: email
