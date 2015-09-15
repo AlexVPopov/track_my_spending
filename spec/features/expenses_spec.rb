@@ -6,7 +6,7 @@ feature 'Expenses' do
   background { login_as(user, :scope => :user) }
 
   scenario 'A user can create an expense', js: true do
-    visit root_path
+    visit authenticated_root_path
     click_link 'New'
     fill_data = Fabricate.attributes_for :expense, tag_list: tag_list
     within '#new_expense' do

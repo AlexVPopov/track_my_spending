@@ -9,7 +9,7 @@ feature 'Sign in' do
     submit_credentials(user.email, user.password)
 
     expect(page).to have_content 'Signed in successfully'
-    expect(page.current_path).to eq root_path
+    expect(page.current_path).to eq authenticated_root_path
   end
 
   scenario 'Signing in with incorrect credentials' do
@@ -26,10 +26,10 @@ feature 'Sign out' do
   background { login_as(user, :scope => :user) }
 
   scenario 'User can successfully sign out and is redirected to login page' do
-    visit root_path
+    visit authenticated_root_path
     click_link 'Sign out'
 
-    expect(page.current_path).to eq new_user_session_path
+    expect(page.current_path).to eq unauthenticated_root_path
   end
 end
 
