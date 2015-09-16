@@ -32,6 +32,7 @@ gem 'acts-as-taggable-on'
 gem 'newrelic_rpm'
 gem 'figaro'
 gem 'jquery-datatables-rails', '~> 3.3.0'
+gem 'attr_extras'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
