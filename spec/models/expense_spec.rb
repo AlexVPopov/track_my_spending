@@ -15,4 +15,9 @@ RSpec.describe Expense, type: :model do
   context 'money' do
     it { is_expected.to monetize(:amount).with_currency(:bgn) }
   end
+
+  context 'class methods' do
+    pending 'Expense.oldest_date'
+    pending 'Expense.between(start_date, end_date)'
+  end
 end

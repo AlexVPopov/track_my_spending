@@ -7,4 +7,12 @@ class Expense < ActiveRecord::Base
   validates :user, presence: true
 
   acts_as_ordered_taggable
+
+  def self.oldest_date
+    order(date: :asc).pluck(:date).first
+  end
+
+  def self.between(start_date, end_date)
+    where('date >= ? AND date <= ?', start_date, end_date)
+  end
 end

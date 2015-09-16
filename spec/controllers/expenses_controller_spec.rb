@@ -28,6 +28,49 @@ RSpec.describe ExpensesController, type: :controller do
       it { should render_template :index }
       it { should respond_with :success }
     end
+
+    context 'with valid date parameters' do
+      let!(:expense1) { Fabricate :expense, user: subject.current_user, date: 10.days.ago }
+      let!(:expense2) { Fabricate :expense, user: subject.current_user, date: 5.days.ago }
+
+      it 'assigns the expenses within the start and end dates as @expenses' do
+        get_expenses(7.days.ago, 3.days.ago)
+        expect(assigns(:expenses)).to include expense2
+      end
+
+      it 'does not assign expenses outside the start and end dates range as @expenses' do
+        get_expenses(7.days.ago, 3.days.ago)
+        expect(assigns(:expenses)).not_to include expense1
+      end
+    end
+
+    context 'with invalid date parameters' do
+      before { Fabricate :expense, user: subject.current_user, date: 10.days.ago }
+
+      context 'start date is greater than end date' do
+        before { get_expenses(5.days.ago, 10.days.ago) }
+
+        it { should redirect_to(expenses_path) }
+        it { should set_flash['error'].to('Start date must be before end date.') }
+      end
+
+      context 'start date is before date of first expense' do
+        before { get_expenses(11.days.ago) }
+
+        it { should redirect_to(expenses_path) }
+        it do
+          first_expense_date = Expense.order(date: :asc).pluck(:date).first
+          should set_flash['error'].to("Start date must be after #{first_expense_date}.")
+        end
+      end
+
+      context 'end date is greater than today' do
+        before { get_expenses(nil, Time.zone.today + 1.day) }
+
+        it { should redirect_to(expenses_path) }
+        it { should set_flash['error'].to('End date must be before today.') }
+      end
+    end
   end
 
   describe 'GET #show' do
@@ -196,6 +239,10 @@ end
 
 def create_expense
   Fabricate :expense, user: subject.current_user
+end
+
+def get_expenses(start_date = nil, end_date = nil)
+  get :index, {start_date: start_date, end_date: end_date}
 end
 
 def tags

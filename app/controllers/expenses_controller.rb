@@ -2,7 +2,12 @@ class ExpensesController < ApplicationController
   before_action :set_expense, only: [:show, :edit, :update, :destroy]
 
   def index
-    @expenses = current_user.expenses.where('date >= ?', Time.zone.today.beginning_of_month)
+  begin
+    DateValidator.new(start_date, end_date).check_dates
+  rescue ArgumentError => error
+    redirect_to expenses_path, flash: {error: error.message} and return
+  end
+    @expenses = current_user.expenses.between(start_date, end_date)
   end
 
   def show
@@ -45,6 +50,18 @@ class ExpensesController < ApplicationController
   end
 
   private
+
+    def start_date
+      if params[:start_date].present?
+        Date.parse(params[:start_date])
+      else
+        [Time.zone.today.beginning_of_month, Expense.oldest_date].max
+      end
+    end
+
+    def end_date
+      params[:end_date].present? ? Date.parse(params[:end_date]) : Time.zone.today
+    end
 
     def set_expense
       find_expense
