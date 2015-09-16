@@ -6,16 +6,28 @@ RSpec.describe ExpensesController, type: :controller do
   it { should use_before_action(:set_expense) }
 
   describe 'GET #index' do
-    let!(:expense) { create_expense }
+    context 'no date parameters' do
+      let!(:previous_month_expense) do
+        Fabricate :expense, user: subject.current_user, date: Time.zone.today.beginning_of_month - 5.days
+      end
 
-    before { get :index, {} }
+      let!(:current_month_expense) do
+        Fabricate :expense, user: subject.current_user, date: Time.zone.today.beginning_of_month + 5.days
+      end
 
-    it 'assigns all expenses as @expenses' do
-      expect(assigns(:expenses)).to eq [expense]
+      before { get :index, {} }
+
+      it 'assigns the expenses for the current month as @expenses' do
+        expect(assigns(:expenses)).to include current_month_expense
+      end
+
+      it 'does not assign older expenses as @expenses' do
+        expect(assigns(:expenses)).not_to include previous_month_expense
+      end
+
+      it { should render_template :index }
+      it { should respond_with :success }
     end
-
-    it { should render_template :index }
-    it { should respond_with :success }
   end
 
   describe 'GET #show' do

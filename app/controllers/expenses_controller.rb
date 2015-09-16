@@ -2,7 +2,7 @@ class ExpensesController < ApplicationController
   before_action :set_expense, only: [:show, :edit, :update, :destroy]
 
   def index
-    @expenses = current_user.expenses
+    @expenses = current_user.expenses.where('date >= ?', Time.zone.today.beginning_of_month)
   end
 
   def show
