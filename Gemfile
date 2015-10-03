@@ -49,7 +49,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'shoulda-matchers', '~> 3.0.rc1'
+  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers', branch: 'master'
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'poltergeist'
