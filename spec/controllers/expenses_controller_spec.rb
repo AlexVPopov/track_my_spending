@@ -166,12 +166,10 @@ RSpec.describe ExpensesController, type: :controller do
       Fabricate.attributes_for :expense, user: subject.current_user, tag_list: tags
     end
 
-    pending 'should (on PATCH #update) restrict parameters to :amount and :date'
-
-    # it do
-    #   params = {id: expense.to_param, expense: new_attributes}
-    #   should permit(:amount, :date).for(:update, params: params).on(:expense)
-    # end
+    it do
+      params = {id: expense.to_param, expense: new_attributes}
+      should permit(:amount, :date).for(:update, params: params).on(:expense)
+    end
 
     context 'with valid params' do
       before do
