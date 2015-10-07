@@ -6,7 +6,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  config.secret_key = Figaro.env.devise_secret_key if Rails.env.production?
+  config.secret_key = ENV['devise_secret_key']
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -240,8 +240,8 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :facebook,
-                  Rails.application.secrets.facebook_app_id,
-                  Rails.application.secrets.facebook_app_secret,
+                  ENV['facebook_app_id'],
+                  ENV['facebook_app_secret'],
                   scope: 'public_profile,email',
                   info_fields: 'email'
 
