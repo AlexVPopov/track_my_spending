@@ -16,4 +16,8 @@
             = f.check_box :remember_me
             = f.label :remember_me
       = f.submit  t('.sign_in', :default => "Sign in"), class: "btn btn-primary"
+    p or
+    = link_to user_omniauth_authorize_path(:facebook), class: 'btn btn-block btn-social btn-facebook' do
+      i.fa.fa-facebook
+      | Sign in with Facebook
 = render "devise/shared/links"
