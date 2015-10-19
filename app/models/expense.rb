@@ -9,7 +9,7 @@ class Expense < ActiveRecord::Base
   acts_as_ordered_taggable
 
   def self.oldest_date
-    order(date: :asc).pluck(:date).first
+    order(date: :asc).pluck(:date).first || Time.zone.today
   end
 
   def self.between(start_date, end_date)
