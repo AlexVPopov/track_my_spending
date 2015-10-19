@@ -8,11 +8,11 @@ RSpec.describe ExpensesController, type: :controller do
   describe 'GET #index' do
     context 'no date parameters' do
       let!(:previous_month_expense) do
-        Fabricate :expense, user: subject.current_user, date: Time.zone.today.beginning_of_month - 5.days
+        Fabricate :expense, user: subject.current_user, date: Time.zone.today.beginning_of_month - 1.days
       end
 
       let!(:current_month_expense) do
-        Fabricate :expense, user: subject.current_user, date: Time.zone.today.beginning_of_month + 5.days
+        Fabricate :expense, user: subject.current_user, date: Time.zone.today
       end
 
       before { get :index, {} }
@@ -62,13 +62,6 @@ RSpec.describe ExpensesController, type: :controller do
           first_expense_date = Expense.order(date: :asc).pluck(:date).first
           should set_flash['error'].to("Start date must be after #{first_expense_date}.")
         end
-      end
-
-      context 'end date is greater than today' do
-        before { get_expenses(nil, Time.zone.today + 1.day) }
-
-        it { should redirect_to(expenses_path) }
-        it { should set_flash['error'].to('End date must be before today.') }
       end
     end
   end
