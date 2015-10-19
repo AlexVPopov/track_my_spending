@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/thoughtbot/shoulda-matchers.git
-  revision: 88a55415de1eeab539533eb8732e78ad6f8786c0
+  revision: 7e976f15dd0f09d383377338a1ac5dc11d734153
   branch: master
   specs:
     shoulda-matchers (3.0.0)
@@ -134,7 +134,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.6.1)
     mini_portile (0.6.2)
-    minitest (5.7.0)
+    minitest (5.8.1)
     monetize (1.1.0)
       money (~> 6.5.0)
     money (6.5.1)
