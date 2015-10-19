@@ -4,7 +4,7 @@ class ExpensesController < ApplicationController
   def index
   begin
     DateValidator.new(start_date, end_date).check_dates
-  rescue ArgumentError => error
+  rescue StandardError => error
     redirect_to expenses_path, flash: {error: error.message} and return
   end
     @expenses = current_user.expenses.between(start_date, end_date)
