@@ -44,25 +44,14 @@ RSpec.describe ExpensesController, type: :controller do
       end
     end
 
-    context 'with invalid date parameters' do
-      before { Fabricate :expense, user: subject.current_user, date: 10.days.ago }
-
-      context 'start date is greater than end date' do
-        before { get_expenses(5.days.ago, 10.days.ago) }
-
-        it { should redirect_to(expenses_path) }
-        it { should set_flash['error'].to('Start date must be before end date.') }
+    context 'start date is greater than end date' do
+      before do
+        Fabricate :expense, user: subject.current_user, date: 10.days.ago
+        get_expenses(5.days.ago, 10.days.ago)
       end
 
-      context 'start date is before date of first expense' do
-        before { get_expenses(11.days.ago) }
-
-        it { should redirect_to(expenses_path) }
-        it do
-          first_expense_date = Expense.order(date: :asc).pluck(:date).first
-          should set_flash['error'].to("Start date must be after #{first_expense_date}.")
-        end
-      end
+      it { should redirect_to(expenses_path) }
+      it { should set_flash['error'].to('Start date must be before end date.') }
     end
   end
 
