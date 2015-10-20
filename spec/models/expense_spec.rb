@@ -21,12 +21,6 @@ RSpec.describe Expense, type: :model do
     let(:middle_expense) { Fabricate :expense, date: 5.days.ago }
     let(:new_expense)    { Fabricate :expense, date: Time.zone.today }
 
-    context 'Expense.oldest_date' do
-      it 'returns the date of the oldest expense created' do
-        expect(Expense.oldest_date).to eq old_expense.date
-      end
-    end
-
     context 'Expense.between' do
       it 'returns all expenses between a given date range' do
         expect(Expense.between(5.days.ago, Time.zone.today)).to eq [middle_expense, new_expense]
