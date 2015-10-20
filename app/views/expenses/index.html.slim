@@ -1,6 +1,14 @@
 - model_class = Expense
 .page-header
   h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+.panel.panel-primary
+  .panel-heading
+    .panel-title Filter
+  .panel-body
+    = form_tag expenses_path, method: :get do
+      = date_field_tag 'start_date', start_date
+      = date_field_tag 'end_date', end_date
+      = submit_tag 'filter'
 table.table.table-hover.table-condensed.datatable
   thead
     tr
