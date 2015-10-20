@@ -1,33 +1,13 @@
 - model_class = Expense
 .page-header
   h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
-.panel.panel-primary
-  .panel-heading
-    .panel-title Filter
-  .panel-body
-    = form_tag expenses_path, method: :get do
-      = date_field_tag 'start_date', start_date
-      = date_field_tag 'end_date', end_date
-      = submit_tag 'filter'
-table.table.table-hover.table-condensed.datatable
-  thead
-    tr
-      th= model_class.human_attribute_name(:date)
-      th= model_class.human_attribute_name(:amount)
-      th= model_class.human_attribute_name(:tag_list)
-      th=t '.actions', :default => t("helpers.actions")
-  tbody
-    - @expenses.each do |expense|
-      tr
-        td=l expense.date, format: :default
-        td=humanized_money_with_symbol expense.amount
-        td= expense.all_tags_list
-        td
-          = link_to expense_path(expense), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do
-            = glyph 'info-sign'
-          = link_to edit_expense_path(expense), :class => 'btn btn-xs', :title => "#{ t('.edit', :default => t('helpers.links.edit')) }" do
-            = glyph 'pencil'
-          = link_to expense_path(expense), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }"  do
-            = glyph 'remove'
+.datefilter.col-md-6
+  = form_tag expenses_path, method: :get, remote: true do
+    #datepicker.input-daterange.input-group
+      = text_field_tag 'start_date', start_date, class: 'input-sm form-control'
+      span.input-group-addon to
+      = text_field_tag 'end_date', end_date, class: 'input-sm form-control'
+
+= render 'table', expenses: @expenses, model_class: model_class
 
 = link_to t('.new', :default => t("helpers.links.new")), new_expense_path, :class => 'btn btn-primary'
