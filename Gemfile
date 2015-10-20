@@ -7,6 +7,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
 gem 'bootstrap-sass-extras'
 gem 'bootswatch-rails'
+gem 'bootstrap-datepicker-rails'
 gem 'font-awesome-sass'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -32,6 +33,7 @@ gem 'acts-as-taggable-on'
 gem 'newrelic_rpm'
 gem 'figaro'
 gem 'jquery-datatables-rails', '~> 3.3.0'
+gem 'attr_extras'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -48,7 +50,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'shoulda-matchers', '~> 3.0.rc1'
+  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers', branch: 'master'
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'poltergeist'

@@ -20,3 +20,12 @@ $ ->
     tags: true
     theme: 'bootstrap'
     tokenSeparators: [',']
+
+  $('#datepicker').datepicker
+    autoclose: true
+    format: 'yyyy-mm-dd'
+    orientation: 'top right'
+    todayBtn: true
+    todayHighlight: true
+  .on 'changeDate', ->
+    $('form').submit()

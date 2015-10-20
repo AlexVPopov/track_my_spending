@@ -2,7 +2,11 @@ class ExpensesController < ApplicationController
   before_action :set_expense, only: [:show, :edit, :update, :destroy]
 
   def index
-    @expenses = current_user.expenses
+    if start_date <= end_date
+      @expenses = current_user.expenses.between(start_date, end_date)
+    else
+      redirect_to expenses_path, flash: {error: 'Start date must be before end date.'}
+    end
   end
 
   def show
@@ -46,22 +50,24 @@ class ExpensesController < ApplicationController
 
   private
 
-    def set_expense
-      find_expense
-      check_ownership
+    def start_date
+      if params[:start_date].present?
+        Date.parse(params[:start_date])
+      else
+        Time.zone.today.beginning_of_month
+      end
     end
+    helper_method :start_date
 
-    def find_expense
-      @expense = Expense.find(params[:id])
+    def end_date
+      params[:end_date].present? ? Date.parse(params[:end_date]) : Time.zone.today
+    end
+    helper_method :end_date
+
+    def set_expense
+      @expense = current_user.expenses.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       redirect_to root_path, alert: 'Expense not found.'
-    end
-
-    def check_ownership
-      unless @expense.user_id == current_user.id
-        redirect_to expenses_path,
-                    alert: 'You do not have access to this expense or expense doesn\'t exist.'
-      end
     end
 
     def expense_params
