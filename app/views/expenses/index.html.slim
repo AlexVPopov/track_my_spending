@@ -1,12 +1,19 @@
 - model_class = Expense
 .page-header
   h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
-.datefilter.col-md-6
+.filter.col-xs-3
   = form_tag expenses_path, method: :get, remote: true do
-    #datepicker.input-daterange.input-group
-      = text_field_tag 'start_date', start_date, class: 'input-sm form-control'
-      span.input-group-addon to
-      = text_field_tag 'end_date', end_date, class: 'input-sm form-control'
+    .form-group
+      #start_datepicker.input-group.date
+        span.input-group-addon from
+        = text_field_tag 'start_date', start_date, class: 'input-sm form-control'
+    .form-group
+      #end_datepicker.input-group.date
+        span.input-group-addon to
+        = text_field_tag 'end_date', end_date, class: 'input-sm form-control'
+  #searching.input-group
+    span.input-group-addon tag
+    = text_field_tag 'search', '', class: 'input-sm form-control'
 
 = render 'table', expenses: @expenses, model_class: model_class
 

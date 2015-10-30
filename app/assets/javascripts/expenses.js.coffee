@@ -1,10 +1,25 @@
+initializeDatepicker = (element) ->
+  element.datepicker
+    autoclose: true
+    format: 'yyyy-mm-dd'
+    orientation: 'top auto'
+    todayBtn: true
+    todayHighlight: true
+  .on 'changeDate', ->
+    $('form').submit()
+
+
 $ ->
-  $('.datatable').DataTable
-    paging: false
+  table = $('.datatable').DataTable
     columnDefs: [
       orderable: false,
       targets: [1, 3]
     ]
+    dom: 't'
+
+  $('#search').on 'keyup', ->
+    table.search(this.value).draw()
+
 
   $('#expense_tag_list').select2
     ajax:
@@ -21,11 +36,4 @@ $ ->
     theme: 'bootstrap'
     tokenSeparators: [',']
 
-  $('#datepicker').datepicker
-    autoclose: true
-    format: 'yyyy-mm-dd'
-    orientation: 'top right'
-    todayBtn: true
-    todayHighlight: true
-  .on 'changeDate', ->
-    $('form').submit()
+  initializeDatepicker($('.input-group.date'))
