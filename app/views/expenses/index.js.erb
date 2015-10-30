@@ -1,9 +1,0 @@
-$('.dt-bootstrap').remove();
-$('.datefilter').after($("<%= j render 'table', expenses: @expenses, model_class: Expense %>"));
-$('.datatable').DataTable({
-  paging: false,
-  columnDefs: [{
-    orderable: false,
-    targets: [1, 3]
-  }]
-});

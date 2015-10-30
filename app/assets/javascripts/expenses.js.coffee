@@ -8,18 +8,22 @@ initializeDatepicker = (element) ->
   .on 'changeDate', ->
     $('form').submit()
 
-
-$ ->
-  table = $('.datatable').DataTable
+initializeDateTable = (element) ->
+  element.DataTable
     columnDefs: [
       orderable: false,
       targets: [1, 3]
     ]
     dom: 't'
 
+initializeSearch = (table) ->
   $('#search').on 'keyup', ->
     table.search(this.value).draw()
 
+$ ->
+  table = initializeDateTable($('.datatable'))
+
+  initializeSearch(table)
 
   $('#expense_tag_list').select2
     ajax:
