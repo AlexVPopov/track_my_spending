@@ -6,6 +6,8 @@
 #= require dataTables/jquery.dataTables
 #= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 #= require bootstrap-datepicker
+#= require modernizr
+#= require moment
 #= require turbolinks
 #= require_tree .
 
