@@ -14,6 +14,7 @@ initializeDateTable = (element) ->
       orderable: false,
       targets: [1, 3]
     ]
+    paging: false
     dom: 't'
 
 initializeDataTableSearch = (element) ->
