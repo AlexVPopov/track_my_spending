@@ -14,6 +14,7 @@ initializeDateTable = (element) ->
       orderable: false,
       targets: [1, 3]
     ]
+    order: [[0, 'desc']]
     paging: false
     dom: 't'
 

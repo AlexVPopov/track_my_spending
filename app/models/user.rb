@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
          :validatable,
          :omniauthable, omniauth_providers: [:facebook]
 
-  has_many :expenses, -> { order :date }, dependent: :destroy
+  has_many :expenses, -> { order date: :desc }, dependent: :destroy
 
   acts_as_tagger
 
