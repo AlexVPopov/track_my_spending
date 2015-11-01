@@ -1,3 +1,7 @@
+$.fn.dataTable.ext.type.order['currency-bg-pre'] = (data) ->
+  currencyValue = data.match(/\d+(?:\.\d)?/)[0]
+  parseFloat(currencyValue)
+
 initializeDatepicker = (element) ->
   element.datepicker
     autoclose: true
@@ -11,8 +15,10 @@ initializeDatepicker = (element) ->
 initializeDateTable = (element) ->
   element.DataTable
     columnDefs: [
-      orderable: false,
-      targets: [1, 3]
+      targets: 0, type: 'date'
+      targets: 1, type: 'currency-bg'
+      targets: 2, type: 'string'
+      targets: 3, orderable: false
     ]
     order: [[0, 'desc']]
     paging: false
@@ -56,6 +62,7 @@ changeTextInputToDate = (input) ->
 
 $ ->
   table = initializeDateTable $('.datatable')
+
   initializeDataTableSearch table
   initializeSelect2 $('#expense_tag_list')
 
