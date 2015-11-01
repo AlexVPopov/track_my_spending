@@ -2,7 +2,7 @@
 .page-header
   h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
 .filter.col-md-3.col-sm-4.col-centered
-  = form_tag expenses_path, method: :get, remote: true do
+  = form_tag expenses_path, method: :get do
     .form-group
       #start_date.datepicker.input-group.date
         span.input-group-addon from
