@@ -56,9 +56,7 @@ changeTextInputToDate = (input) ->
 
 $ ->
   table = initializeDateTable $('.datatable')
-
   initializeDataTableSearch table
-
   initializeSelect2 $('#expense_tag_list')
 
   if isMobile()
