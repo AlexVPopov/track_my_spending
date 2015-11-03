@@ -8,6 +8,8 @@ class Expense < ActiveRecord::Base
 
   acts_as_ordered_taggable
 
+  after_initialize { |expense| expense.date ||= Time.zone.today }
+
   def self.between(start_date, end_date)
     where('date >= ? AND date <= ?', start_date, end_date)
   end

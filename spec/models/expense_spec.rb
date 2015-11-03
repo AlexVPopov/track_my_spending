@@ -16,6 +16,18 @@ RSpec.describe Expense, type: :model do
     it { is_expected.to monetize(:amount).with_currency(:bgn) }
   end
 
+  context 'initialization' do
+    let(:expense) { Fabricate :expense, date: 1.day.ago.to_date }
+
+    it 'sets the date of a new expense to today' do
+      expect(Expense.new.date).to eq Time.zone.today
+    end
+
+    it 'initializes an already existing expense with the correct date' do
+      expect(expense.date).to eq 1.day.ago.to_date
+    end
+  end
+
   context 'class methods' do
     let!(:old_expense)   { Fabricate :expense, date: 10.days.ago }
     let(:middle_expense) { Fabricate :expense, date: 5.days.ago }
