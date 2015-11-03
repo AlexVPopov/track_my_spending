@@ -171,12 +171,8 @@ RSpec.describe ExpensesController, type: :controller do
         expect(assigns(:expense)).to eq expense
       end
 
+      it { should redirect_to action: :index }
       it { should set_flash['notice'].to 'Expense was successfully updated.' }
-
-      it 'redirects to the expense' do
-        should redirect_to(expense)
-      end
-
       it { should respond_with :found }
     end
 

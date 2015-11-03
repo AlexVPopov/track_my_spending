@@ -36,7 +36,7 @@ class ExpensesController < ApplicationController
     current_user.tag(@expense, with: params[:expense][:tag_list], on: :tags)
 
     if @expense.update(expense_params)
-      redirect_to @expense, notice: 'Expense was successfully updated.'
+      redirect_to expenses_path, notice: 'Expense was successfully updated.'
     else
       flash[:error] = @expense.errors.full_messages.first
       render :edit
