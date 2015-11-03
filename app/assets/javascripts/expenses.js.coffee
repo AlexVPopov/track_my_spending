@@ -1,5 +1,5 @@
 $.fn.dataTable.ext.type.order['currency-bg-pre'] = (data) ->
-  currencyValue = data.match(/\d+(?:\.\d)?/)[0]
+  currencyValue = data.match(/\d+(?:\.\d+)?/)[0]
   parseFloat(currencyValue)
 
 initializeDatepicker = (element) ->
@@ -14,11 +14,18 @@ initializeDatepicker = (element) ->
 
 initializeDateTable = (element) ->
   element.DataTable
-    columnDefs: [
-      targets: 0, type: 'date'
-      targets: 1, type: 'currency-bg'
-      targets: 2, type: 'string'
-      targets: 3, orderable: false
+    columns: [
+        type: 'date',
+        searchable: false
+      ,
+        type: 'currency-bg'
+        searchable: false
+      ,
+        type: 'string'
+      ,
+        type: null
+        orderable: false
+        searchable: false
     ]
     order: [[0, 'desc']]
     paging: false
