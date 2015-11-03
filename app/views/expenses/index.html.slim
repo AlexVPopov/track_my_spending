@@ -1,20 +1,30 @@
 - model_class = Expense
-.page-header
-  h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
-.filter.col-md-3.col-sm-4.col-centered
-  = form_tag expenses_path, method: :get do
-    .form-group
-      #start_date.datepicker.input-group.date
-        span.input-group-addon from
-        = text_field_tag 'start_date', start_date, class: 'input-sm form-control'
-    .form-group
-      #end_date.datepicker.input-group.date
-        span.input-group-addon to
-        = text_field_tag 'end_date', end_date, class: 'input-sm form-control'
-  #searching.input-group
-    span.input-group-addon tag
-    = text_field_tag 'search', '', class: 'input-sm form-control'
 
-= render 'table', expenses: @expenses, model_class: model_class
+.row
+  .page-header
+    h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
 
-= link_to t('.new', :default => t("helpers.links.new")), new_expense_path, :class => 'btn btn-primary'
+- if @expenses.count > 10
+  .row
+    = render 'new_expense_button'
+
+.row
+  .filter.col-md-3.col-sm-4.col-centered
+    = form_tag expenses_path, method: :get do
+      .form-group
+        #start_date.datepicker.input-group.date
+          span.input-group-addon from
+          = text_field_tag 'start_date', start_date, class: 'input-sm form-control'
+      .form-group
+        #end_date.datepicker.input-group.date
+          span.input-group-addon to
+          = text_field_tag 'end_date', end_date, class: 'input-sm form-control'
+    #searching.input-group
+      span.input-group-addon tag
+      = text_field_tag 'search', '', class: 'input-sm form-control'
+
+.row
+  = render 'table', expenses: @expenses, model_class: model_class
+
+.row
+  = render 'new_expense_button'

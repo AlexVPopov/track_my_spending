@@ -1,6 +1,5 @@
 Fabricator(:user) do
-  email { FFaker::Internet.email }
-  pass = FFaker::Internet.password
-  password pass
-  password_confirmation pass
+  email { sequence(:email) { |i| "user#{i}@example.com" } }
+  password 'qwe123@!'
+  password_confirmation 'qwe123@!'
 end
