@@ -1,7 +1,13 @@
 - model_class = Expense
+
 .row
   .page-header
     h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+
+- if @expenses.count > 10
+  .row
+    = render 'new_expense_button'
+
 .row
   .filter.col-md-3.col-sm-4.col-centered
     = form_tag expenses_path, method: :get do
@@ -21,4 +27,4 @@
   = render 'table', expenses: @expenses, model_class: model_class
 
 .row
-  = link_to t('.new', :default => t("helpers.links.new")), new_expense_path, :class => 'btn btn-primary'
+  = render 'new_expense_button'
