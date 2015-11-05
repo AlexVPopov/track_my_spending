@@ -1,5 +1,13 @@
 $.fn.dataTable.ext.type.order['currency-bg-pre'] = parseCurrency
 
+changeTextInputToDate = (input) ->
+  input.each(-> $(@).clone().attr('type', 'date').insertBefore(@)).remove()
+
+dataTableFooterCallback = (row, data, start, end, display) ->
+    api = @api()
+    total = api.column(1).data().reduce sumCurrency, 0
+    $(api.column(1).footer()).html("#{total.toFixed(2)} лв")
+
 initializeDatepicker = (element) ->
   element.datepicker
     autoclose: true
@@ -30,10 +38,6 @@ initializeDateTable = (element) ->
     paging: false
     dom: 't'
 
-initializeDataTableSearch = (element) ->
-  $('#search').on 'keyup', ->
-    element.search(this.value).draw()
-
 initializeSelect2 = (element) ->
   element.select2
     ajax:
@@ -59,29 +63,19 @@ isMobile = ->
   ) navigator.userAgent or navigator.vendor or window.opera
   check
 
-changeTextInputToDate = (input) ->
-  input.each ->
-    newInput = $(this).clone()
-    newInput.attr('type', 'date').insertBefore(this)
-  .remove()
-
-dataTableFooterCallback = (row, data, start, end, display) ->
-    api = @api()
-    total = api.column(1).data().reduce sumCurrency, 0
-    $(api.column(1).footer()).html(total.toFixed(2) + ' лв')
-
 parseCurrency = (amount) ->
   switch typeof amount
     when 'string' then amount.match(/\d+(?:\.\d+)?/)[0] * 1
     when 'number' then amount
     else 0
 
-sumCurrency = (a, b) ->
-  parseCurrency(a) + parseCurrency(b)
+sumCurrency = (a, b) -> parseCurrency(a) + parseCurrency(b)
 
 $ ->
   api = initializeDateTable $('.datatable')
-  initializeDataTableSearch api
+
+  $('#search').on 'keyup', -> api.search(@value).draw()
+
   initializeSelect2 $('#expense_tag_list')
 
   if isMobile()
@@ -89,5 +83,4 @@ $ ->
   else
     initializeDatepicker $('.input-group.date')
 
-  $('.datepicker').on 'change', ->
-    $('form').submit()
+  $('.datepicker').on 'change', -> $('form').submit()
