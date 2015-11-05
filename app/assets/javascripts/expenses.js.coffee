@@ -1,6 +1,4 @@
-$.fn.dataTable.ext.type.order['currency-bg-pre'] = (data) ->
-  currencyValue = data.match(/\d+(?:\.\d+)?/)[0]
-  parseFloat(currencyValue)
+$.fn.dataTable.ext.type.order['currency-bg-pre'] = parseCurrency
 
 initializeDatepicker = (element) ->
   element.datepicker
@@ -27,6 +25,7 @@ initializeDateTable = (element) ->
         orderable: false
         searchable: false
     ]
+    footerCallback: dataTableFooterCallback
     order: [[0, 'desc']]
     paging: false
     dom: 't'
@@ -51,7 +50,6 @@ initializeSelect2 = (element) ->
     theme: 'bootstrap'
     tokenSeparators: [',']
 
-
 isMobile = ->
   check = false
   ((a) ->
@@ -67,10 +65,23 @@ changeTextInputToDate = (input) ->
     newInput.attr('type', 'date').insertBefore(this)
   .remove()
 
-$ ->
-  table = initializeDateTable $('.datatable')
+dataTableFooterCallback = (row, data, start, end, display) ->
+    api = @api()
+    total = api.column(1).data().reduce sumCurrency, 0
+    $(api.column(1).footer()).html(total.toFixed(2) + ' лв')
 
-  initializeDataTableSearch table
+parseCurrency = (amount) ->
+  switch typeof amount
+    when 'string' then amount.match(/\d+(?:\.\d+)?/)[0] * 1
+    when 'number' then amount
+    else 0
+
+sumCurrency = (a, b) ->
+  parseCurrency(a) + parseCurrency(b)
+
+$ ->
+  api = initializeDateTable $('.datatable')
+  initializeDataTableSearch api
   initializeSelect2 $('#expense_tag_list')
 
   if isMobile()

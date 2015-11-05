@@ -5,6 +5,12 @@ table.table.table-hover.table-condensed.datatable.dt-bootstrap
       th= model_class.human_attribute_name(:amount)
       th= model_class.human_attribute_name(:tag_list)
       th=t '.actions', :default => t("helpers.actions")
+  tfoot
+    tr
+      td Total:
+      td
+      td
+      td
   tbody
     - expenses.each do |expense|
       tr
