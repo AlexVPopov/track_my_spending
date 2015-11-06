@@ -5,7 +5,7 @@ changeTextInputToDate = (input) ->
 
 dataTableFooterCallback = (row, data, start, end, display) ->
     api = @api()
-    total = api.column(1).data().reduce sumCurrency, 0
+    total = api.column(1, search: 'applied').data().reduce sumCurrency, 0
     $(api.column(1).footer()).html("#{total.toFixed(2)} лв")
 
 initializeDatepicker = (element) ->
