@@ -1,5 +1,6 @@
 class ExpensesController < ApplicationController
   before_action :set_expense, only: [:show, :edit, :update, :destroy]
+  before_action :save_filter_dates, only: :index
 
   def index
     if start_date <= end_date
@@ -50,17 +51,22 @@ class ExpensesController < ApplicationController
 
   private
 
+    def save_filter_dates
+      session[:start_date] = params[:start_date] if params[:start_date].present?
+      session[:end_date]   = params[:end_date]   if params[:end_date].present?
+    end
+
     def start_date
-      if params[:start_date].present?
-        Date.parse(params[:start_date])
-      else
-        Time.zone.today.beginning_of_month
-      end
+      return Date.parse(params[:start_date]) if params[:start_date].present?
+      return Date.parse(session[:start_date]) if session[:start_date].present?
+      Time.zone.today.beginning_of_month
     end
     helper_method :start_date
 
     def end_date
-      params[:end_date].present? ? Date.parse(params[:end_date]) : Time.zone.today
+      return Date.parse(params[:end_date]) if params[:end_date].present?
+      return Date.parse(session[:end_date]) if session[:end_date].present?
+      Time.zone.today
     end
     helper_method :end_date
 
