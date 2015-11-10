@@ -36,7 +36,8 @@ initializeDateTable = (element) ->
         searchable: false
     ]
     dom: 'Bt'
-    fixedHeader: true
+    fixedHeader:
+      headerOffset: $('nav.navbar').outerHeight()
     footerCallback: dataTableFooterCallback
     order: [[0, 'desc']]
     paging: false
