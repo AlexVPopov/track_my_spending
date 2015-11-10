@@ -3,13 +3,12 @@
 #= require jquery_ujs
 #= require bootstrap-sprockets
 #= require select2
-#= require dataTables/jquery.dataTables
-#= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 #= require bootstrap-datepicker
+#= require datatables.min
 #= require modernizr
 #= require moment
 #= require turbolinks
-#= require_tree .
+#= require expenses
 
 
 if window.location.hash and window.location.hash == '#_=_'
