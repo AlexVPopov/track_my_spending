@@ -20,6 +20,8 @@ initializeDatepicker = (element) ->
 
 initializeDateTable = (element) ->
   element.DataTable
+    buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'colvis']
+    colReorder: true
     columns: [
         type: 'date',
         searchable: false
@@ -33,10 +35,12 @@ initializeDateTable = (element) ->
         orderable: false
         searchable: false
     ]
+    dom: 'Bt'
+    fixedHeader: true
     footerCallback: dataTableFooterCallback
     order: [[0, 'desc']]
     paging: false
-    dom: 't'
+    responsive: true
 
 initializeSelect2 = (element) ->
   element.select2
