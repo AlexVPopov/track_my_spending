@@ -1,5 +1,3 @@
-$.fn.dataTable.ext.type.order['currency-bg-pre'] = parseCurrency
-
 changeTextInputToDate = (input) ->
   input.each(-> $(@).clone().attr('type', 'date').insertBefore(@)).remove()
 
@@ -73,6 +71,8 @@ parseCurrency = (amount) ->
     when 'string' then amount.match(/\d+(?:\.\d+)?/)[0] * 1
     when 'number' then amount
     else 0
+
+$.fn.dataTable.ext.type.order['currency-bg-pre'] = parseCurrency
 
 sumCurrency = (a, b) -> parseCurrency(a) + parseCurrency(b)
 
