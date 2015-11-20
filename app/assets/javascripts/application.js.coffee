@@ -4,7 +4,7 @@
 #= require bootstrap-sprockets
 #= require select2
 #= require bootstrap-datepicker
-#= require datatables.min
+#= require datatables
 #= require modernizr
 #= require moment
 #= require turbolinks

@@ -18,7 +18,7 @@ initializeDatepicker = (element) ->
 
 initializeDateTable = (element) ->
   element.DataTable
-    buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'colvis']
+    buttons: ['colvis', 'copy', 'csv', 'pdf', 'print', 'excel']
     colReorder: true
     columns: [
         type: 'date',
