@@ -15,7 +15,7 @@ feature 'Sign in' do
   scenario 'Signing in with incorrect credentials' do
     submit_credentials(user.email, 'wrong_password')
 
-    expect(page).to have_content 'Invalid email or password.'
+    expect(page).to have_content /Invalid email or password/i
     expect(page.current_path).to eq new_user_session_path
   end
 end

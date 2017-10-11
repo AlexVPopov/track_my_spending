@@ -39,6 +39,10 @@ gem 'attr_extras'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+group :development do
+  gem 'web-console', '~> 2.0'
+end
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
@@ -47,7 +51,6 @@ group :development, :test do
   gem 'ffaker'
   gem 'quiet_assets'
   gem 'spring'
-  gem 'web-console', '~> 2.0'
 end
 
 group :test do
