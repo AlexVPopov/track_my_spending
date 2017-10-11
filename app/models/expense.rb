@@ -1,4 +1,4 @@
-class Expense < ActiveRecord::Base
+class Expense < ApplicationRecord
   belongs_to :user
 
   monetize :amount_stotinkas, numericality: {greater_than_or_equal_to: 0.1}, as: 'amount'

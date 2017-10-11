@@ -15,7 +15,7 @@ RSpec.describe ExpensesController, type: :controller do
         Fabricate :expense, user: subject.current_user, date: Time.zone.today
       end
 
-      before { get :index, {} }
+      before { get :index, params: {} }
 
       it 'assigns the expenses for the current month as @expenses' do
         expect(assigns(:expenses)).to include current_month_expense
@@ -58,7 +58,7 @@ RSpec.describe ExpensesController, type: :controller do
   describe 'GET #show' do
     let(:expense) { create_expense }
 
-    before { get :show, {id: expense.to_param} }
+    before { get :show, params: {id: expense.to_param} }
 
     it 'assigns the requested expense as @expense' do
       expect(assigns(:expense)).to eq expense
@@ -71,7 +71,7 @@ RSpec.describe ExpensesController, type: :controller do
   describe 'GET #new' do
     render_views
 
-    before { get :new, {} }
+    before { get :new, params: {} }
 
     it 'assigns a new expense as @expense' do
       expect(assigns(:expense)).to be_a_new(Expense)
@@ -87,7 +87,7 @@ RSpec.describe ExpensesController, type: :controller do
 
     let(:expense) { create_expense }
 
-    before { get :edit, {id: expense.to_param} }
+    before { get :edit, params: {id: expense.to_param} }
 
     it 'assigns the requested expense as @expense' do
       expect(assigns(:expense)).to eq expense
@@ -107,10 +107,10 @@ RSpec.describe ExpensesController, type: :controller do
     context 'with valid params' do
       let(:valid_attributes) { Fabricate.attributes_for :expense, user: subject.current_user }
 
-      before { post :create, {expense: valid_attributes} }
+      before { post :create, params: {expense: valid_attributes} }
 
       it 'creates a new Expense' do
-        expect { post :create, {expense: valid_attributes} }.to change(Expense, :count).by 1
+        expect { post :create, params: {expense: valid_attributes} }.to change(Expense, :count).by 1
       end
 
       it 'assigns a newly created expense as @expense' do
@@ -128,7 +128,7 @@ RSpec.describe ExpensesController, type: :controller do
 
       let(:invalid_attributes) { Fabricate.attributes_for :expense, amount: 0 }
 
-      before { post :create, {expense: invalid_attributes} }
+      before { post :create, params: {expense: invalid_attributes} }
 
       it 'assigns a newly created but unsaved expense as @expense' do
         expect(assigns(:expense)).to be_a_new(Expense)
@@ -155,7 +155,7 @@ RSpec.describe ExpensesController, type: :controller do
 
     context 'with valid params' do
       before do
-        put :update, {id: expense.to_param, expense: new_attributes}
+        put :update, params: {id: expense.to_param, expense: new_attributes}
         expense.reload
       end
 
@@ -181,7 +181,7 @@ RSpec.describe ExpensesController, type: :controller do
 
       let(:invalid_attributes) { Fabricate.attributes_for :expense, amount: 0 }
 
-      before { put :update, {id: expense.to_param, expense: invalid_attributes} }
+      before { put :update, params: {id: expense.to_param, expense: invalid_attributes} }
 
       it 'assigns the expense as @expense' do
         expect(assigns(:expense)).to eq expense
@@ -198,16 +198,16 @@ RSpec.describe ExpensesController, type: :controller do
     let!(:expense) { create_expense }
 
     it 'destroys the requested expense' do
-      expect { delete :destroy, {id: expense.to_param} }.to change(Expense, :count).by -1
+      expect { delete :destroy, params: {id: expense.to_param} }.to change(Expense, :count).by -1
     end
 
     it do
-      delete :destroy, {id: expense.to_param}
+      delete :destroy, params: {id: expense.to_param}
       should redirect_to(action: :index)
     end
 
     it do
-      delete :destroy, {id: expense.to_param}
+      delete :destroy, params: {id: expense.to_param}
       should respond_with :found
     end
   end
@@ -218,7 +218,7 @@ def create_expense
 end
 
 def get_expenses(start_date = nil, end_date = nil)
-  get :index, {start_date: start_date, end_date: end_date}
+  get :index, params: {start_date: start_date, end_date: end_date}
 end
 
 def tags

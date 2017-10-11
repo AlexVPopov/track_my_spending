@@ -1,23 +1,23 @@
 source 'https://rubygems.org'
 
 ruby '2.4.1'
-gem 'rails', '4.2.10'
+gem 'rails', '5.0.6'
 gem 'pg'
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails'
 gem 'bootstrap-sass'
 gem 'bootstrap-sass-extras'
 gem 'bootswatch-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'font-awesome-sass'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
+gem 'uglifier'
+gem 'coffee-rails'
 gem 'slim-rails'
 gem 'jquery-rails'
 gem 'modernizr-rails'
 gem 'momentjs-rails'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -49,7 +49,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'fabrication'
   gem 'ffaker'
-  gem 'quiet_assets'
   gem 'spring'
 end
 
@@ -59,6 +58,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'poltergeist'
   gem 'database_cleaner'
+  gem 'rails-controller-testing'
   gem 'rspec_junit_formatter'
 end
 
