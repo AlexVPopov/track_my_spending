@@ -56,5 +56,6 @@ group :test do
   gem 'selenium-webdriver'
   gem 'poltergeist'
   gem 'database_cleaner'
+  gem 'rspec_junit_formatter'
 end
 
