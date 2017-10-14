@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'Expenses' do
   given(:user) { Fabricate :user }
 
-  background { login_as(user, :scope => :user) }
+  background { login_as(user, scope: :user) }
 
   scenario 'A user can create an expense', js: true do
     visit authenticated_root_path

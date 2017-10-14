@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeAmountColumnOfExpense < ActiveRecord::Migration
   def change
     rename_column :expenses, :amount, :amount_old
@@ -12,8 +14,5 @@ class ChangeAmountColumnOfExpense < ActiveRecord::Migration
         Expense.find_each { |expense| expense.update(amount_old: expense.amount) }
       end
     end
-    
-    
-    
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeDateTypeOfExpense < ActiveRecord::Migration
   def change
     change_column :expenses, :date, :date, default: Time.zone.today, null: false

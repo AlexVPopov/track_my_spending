@@ -1,24 +1,24 @@
+# frozen_string_literal: true
+
 class ExpensesController < ApplicationController
-  before_action :set_expense, only: [:show, :edit, :update, :destroy]
+  before_action :set_expense, only: %i[show edit update destroy]
   before_action :save_filter_dates, only: :index
 
   def index
     if start_date <= end_date
       @expenses = current_user.expenses.between(start_date, end_date)
     else
-      redirect_to expenses_path, flash: {error: 'Start date must be before end date.'}
+      redirect_to expenses_path, flash: { error: 'Start date must be before end date.' }
     end
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @expense = Expense.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @expense = Expense.new(expense_params)
@@ -51,32 +51,32 @@ class ExpensesController < ApplicationController
 
   private
 
-    def save_filter_dates
-      session[:start_date] = params[:start_date] if params[:start_date].present?
-      session[:end_date]   = params[:end_date]   if params[:end_date].present?
-    end
+  def save_filter_dates
+    session[:start_date] = params[:start_date] if params[:start_date].present?
+    session[:end_date]   = params[:end_date]   if params[:end_date].present?
+  end
 
-    def start_date
-      return Date.parse(params[:start_date]) if params[:start_date].present?
-      return Date.parse(session[:start_date]) if session[:start_date].present?
-      Time.zone.today.beginning_of_month
-    end
-    helper_method :start_date
+  def start_date
+    return Date.parse(params[:start_date]) if params[:start_date].present?
+    return Date.parse(session[:start_date]) if session[:start_date].present?
+    Time.zone.today.beginning_of_month
+  end
+  helper_method :start_date
 
-    def end_date
-      return Date.parse(params[:end_date]) if params[:end_date].present?
-      return Date.parse(session[:end_date]) if session[:end_date].present?
-      Time.zone.today
-    end
-    helper_method :end_date
+  def end_date
+    return Date.parse(params[:end_date]) if params[:end_date].present?
+    return Date.parse(session[:end_date]) if session[:end_date].present?
+    Time.zone.today
+  end
+  helper_method :end_date
 
-    def set_expense
-      @expense = current_user.expenses.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to root_path, alert: 'Expense not found.'
-    end
+  def set_expense
+    @expense = current_user.expenses.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path, alert: 'Expense not found.'
+  end
 
-    def expense_params
-      params.require(:expense).permit(:amount, :date)
-    end
+  def expense_params
+    params.require(:expense).permit(:amount, :date)
+  end
 end

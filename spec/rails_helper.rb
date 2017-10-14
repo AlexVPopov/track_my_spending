@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
 require 'support/controller_macros'
@@ -22,14 +24,14 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.include Devise::Test::ControllerHelpers, type: :controller
-  config.extend ControllerMacros, :type => :controller
+  config.extend ControllerMacros, type: :controller
   config.include Warden::Test::Helpers
   config.before(:suite) { Warden.test_mode! }
   config.after(:each) { Warden.test_reset! }
 
   config.before(:suite) { DatabaseCleaner.clean_with(:truncation) }
   config.before(:each) do |example|
-    DatabaseCleaner.strategy= example.metadata[:js] ? :truncation : :transaction
+    DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
     DatabaseCleaner.start
   end
   config.after(:each) { DatabaseCleaner.clean }

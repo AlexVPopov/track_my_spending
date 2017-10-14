@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'Sign in' do
@@ -15,7 +17,7 @@ feature 'Sign in' do
   scenario 'Signing in with incorrect credentials' do
     submit_credentials(user.email, 'wrong_password')
 
-    expect(page).to have_content /Invalid email or password/i
+    expect(page).to have_content(/Invalid email or password/i)
     expect(page.current_path).to eq new_user_session_path
   end
 end
@@ -23,7 +25,7 @@ end
 feature 'Sign out' do
   given(:user) { Fabricate :user }
 
-  background { login_as(user, :scope => :user) }
+  background { login_as(user, scope: :user) }
 
   scenario 'User can successfully sign out and is redirected to login page' do
     visit authenticated_root_path
@@ -44,7 +46,7 @@ feature 'Root path' do
   end
 
   scenario 'The user sees the expneses#index page if authenticated' do
-    login_as(user, :scope => :user)
+    login_as(user, scope: :user)
     visit '/'
 
     expect(page).to have_content 'Expenses'

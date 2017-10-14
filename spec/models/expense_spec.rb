@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Expense, type: :model do
@@ -35,7 +37,8 @@ RSpec.describe Expense, type: :model do
 
     context 'Expense.between' do
       it 'returns all expenses between a given date range' do
-        expect(Expense.between(5.days.ago, Time.zone.today)).to eq [middle_expense, new_expense]
+        expect(Expense.between(5.days.ago, Time.zone.today))
+          .to eq [middle_expense, new_expense]
       end
 
       it 'does not return expenses outside the given date range' do

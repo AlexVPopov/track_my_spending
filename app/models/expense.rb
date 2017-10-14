@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class Expense < ApplicationRecord
   belongs_to :user
 
-  monetize :amount_stotinkas, numericality: {greater_than_or_equal_to: 0.1}, as: 'amount'
+  monetize :amount_stotinkas, numericality: { greater_than_or_equal_to: 0.1 }, as: 'amount'
 
   validates :date, presence: true
   validates :user, presence: true
