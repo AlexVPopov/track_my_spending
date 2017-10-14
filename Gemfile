@@ -25,7 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'thin'
+gem 'puma'
 gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'omniauth-facebook'
