@@ -6,12 +6,12 @@ RSpec.describe Expense, type: :model do
   it('has a valid fabricator') { expect(Fabricate(:expense)).to be_valid }
 
   context 'validations' do
-    it { should validate_presence_of(:date) }
-    it { should validate_presence_of(:user) }
+    it { is_expected.to validate_presence_of(:date) }
+    it { is_expected.to validate_presence_of(:user) }
   end
 
   context 'associations' do
-    it { should belong_to(:user) }
+    it { is_expected.to belong_to(:user) }
   end
 
   context 'money' do
