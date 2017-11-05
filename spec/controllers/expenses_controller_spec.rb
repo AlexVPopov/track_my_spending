@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe ExpensesController, type: :controller do
   login_user
 
-  it { should use_before_action(:set_expense) }
+  it { is_expected.to use_before_action(:set_expense) }
 
   describe 'GET #index' do
     context 'no date parameters' do
@@ -29,8 +29,8 @@ RSpec.describe ExpensesController, type: :controller do
         expect(assigns(:expenses)).not_to include previous_month_expense
       end
 
-      it { should render_template :index }
-      it { should respond_with :success }
+      it { is_expected.to render_template :index }
+      it { is_expected.to respond_with :success }
     end
 
     context 'with valid date parameters' do
@@ -56,8 +56,8 @@ RSpec.describe ExpensesController, type: :controller do
         get_expenses(5.days.ago, 10.days.ago)
       end
 
-      it { should redirect_to(expenses_path) }
-      it { should set_flash['error'].to('Start date must be before end date.') }
+      it { is_expected.to redirect_to(expenses_path) }
+      it { is_expected.to set_flash['error'].to('Start date must be before end date.') }
     end
   end
 
@@ -70,8 +70,8 @@ RSpec.describe ExpensesController, type: :controller do
       expect(assigns(:expense)).to eq expense
     end
 
-    it { should render_template :show }
-    it { should respond_with :success }
+    it { is_expected.to render_template :show }
+    it { is_expected.to respond_with :success }
   end
 
   describe 'GET #new' do
@@ -83,9 +83,9 @@ RSpec.describe ExpensesController, type: :controller do
       expect(assigns(:expense)).to be_a_new(Expense)
     end
 
-    it { should render_template :new }
-    it { should render_template partial: '_form' }
-    it { should respond_with :success }
+    it { is_expected.to render_template :new }
+    it { is_expected.to render_template partial: '_form' }
+    it { is_expected.to respond_with :success }
   end
 
   describe 'GET #edit' do
@@ -99,15 +99,15 @@ RSpec.describe ExpensesController, type: :controller do
       expect(assigns(:expense)).to eq expense
     end
 
-    it { should render_template :edit }
-    it { should render_template partial: '_form' }
-    it { should respond_with :success }
+    it { is_expected.to render_template :edit }
+    it { is_expected.to render_template partial: '_form' }
+    it { is_expected.to respond_with :success }
   end
 
   describe 'POST #create' do
     it do
       params = { expense: Fabricate.attributes_for(:expense, tag_list: tags) }
-      should permit(:amount, :date).for(:create, params: params)
+      is_expected.to permit(:amount, :date).for(:create, params: params)
     end
 
     context 'with valid params' do
@@ -127,9 +127,9 @@ RSpec.describe ExpensesController, type: :controller do
         expect(assigns(:expense)).to be_persisted
       end
 
-      it { should redirect_to action: :index }
-      it { should set_flash['notice'].to 'Expense was successfully created.' }
-      it { should respond_with :found }
+      it { is_expected.to redirect_to action: :index }
+      it { is_expected.to set_flash['notice'].to 'Expense was successfully created.' }
+      it { is_expected.to respond_with :found }
     end
 
     context 'with invalid params' do
@@ -143,10 +143,10 @@ RSpec.describe ExpensesController, type: :controller do
         expect(assigns(:expense)).to be_a_new(Expense)
       end
 
-      it { should render_template :new }
-      it { should render_template partial: '_form' }
-      it { should set_flash['error'].to assigns(:expense).errors.full_messages.first }
-      it { should respond_with :success }
+      it { is_expected.to render_template :new }
+      it { is_expected.to render_template partial: '_form' }
+      it { is_expected.to set_flash['error'].to assigns(:expense).errors.full_messages.first }
+      it { is_expected.to respond_with :success }
     end
   end
 
@@ -159,7 +159,7 @@ RSpec.describe ExpensesController, type: :controller do
 
     it do
       params = { id: expense.to_param, expense: new_attributes }
-      should permit(:amount, :date).for(:update, params: params).on(:expense)
+      is_expected.to permit(:amount, :date).for(:update, params: params).on(:expense)
     end
 
     context 'with valid params' do
@@ -180,9 +180,9 @@ RSpec.describe ExpensesController, type: :controller do
         expect(assigns(:expense)).to eq expense
       end
 
-      it { should redirect_to action: :index }
-      it { should set_flash['notice'].to 'Expense was successfully updated.' }
-      it { should respond_with :found }
+      it { is_expected.to redirect_to action: :index }
+      it { is_expected.to set_flash['notice'].to 'Expense was successfully updated.' }
+      it { is_expected.to respond_with :found }
     end
 
     context 'with invalid params' do
@@ -198,10 +198,10 @@ RSpec.describe ExpensesController, type: :controller do
         expect(assigns(:expense)).to eq expense
       end
 
-      it { should set_flash['error'].to assigns(:expense).errors.full_messages.first }
-      it { should render_template :edit }
-      it { should render_template partial: '_form' }
-      it { should respond_with :success }
+      it { is_expected.to set_flash['error'].to assigns(:expense).errors.full_messages.first }
+      it { is_expected.to render_template :edit }
+      it { is_expected.to render_template partial: '_form' }
+      it { is_expected.to respond_with :success }
     end
   end
 
@@ -215,12 +215,12 @@ RSpec.describe ExpensesController, type: :controller do
 
     it do
       delete :destroy, params: { id: expense.to_param }
-      should redirect_to(action: :index)
+      is_expected.to redirect_to(action: :index)
     end
 
     it do
       delete :destroy, params: { id: expense.to_param }
-      should respond_with :found
+      is_expected.to respond_with :found
     end
   end
 end
