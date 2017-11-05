@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
          :registerable,
          :recoverable,
@@ -11,9 +9,9 @@ class User < ApplicationRecord
          :validatable,
          :omniauthable, omniauth_providers: [:facebook]
 
-  has_many :expenses, -> { order date: :desc }, dependent: :destroy
-
   acts_as_tagger
+
+  has_many :expenses, -> { order date: :desc }, dependent: :destroy
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

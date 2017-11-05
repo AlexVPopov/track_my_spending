@@ -4,9 +4,9 @@
   .page-header
     h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
 
-- if @expenses.count > 10
-  .row
-    = render 'new_expense_button'
+.row
+  .new-expense-button
+    = link_to t('.new', :default => t("helpers.links.new")), new_expense_path, :class => 'btn btn-primary'
 
 .row
   .filter.col-md-3.col-sm-4.col-centered
@@ -24,7 +24,31 @@
       = text_field_tag 'search', '', class: 'input-sm form-control'
 
 .row
-  = render 'table', expenses: @expenses, model_class: model_class
+  table.table.table-hover.table-condensed.datatable.dt-bootstrap
+    thead
+      tr
+        th= model_class.human_attribute_name(:date)
+        th= model_class.human_attribute_name(:amount)
+        th= model_class.human_attribute_name(:tag_list)
+        th=t '.actions', :default => t("helpers.actions")
+    tfoot
+      tr
+        td Total:
+        td
+        td
+        td
+    tbody
+      - @expenses.each do |expense|
+        tr
+          td=l expense.date, format: :default
+          td=humanized_money_with_symbol expense.amount
+          td= expense.all_tags_list
+          td
+            = link_to expense_path(expense), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do
+              = glyph 'info-sign'
+            = link_to edit_expense_path(expense), :class => 'btn btn-xs', :title => "#{ t('.edit', :default => t('helpers.links.edit')) }" do
+              = glyph 'pencil'
+            = link_to expense_path(expense), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }"  do
+              = glyph 'remove'
 
-.row
-  = render 'new_expense_button'
+

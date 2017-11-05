@@ -21,8 +21,7 @@ class ExpensesController < ApplicationController
   def edit; end
 
   def create
-    @expense = Expense.new(expense_params)
-    @expense.user = current_user
+    @expense = current_user.expenses.new(expense_params)
     current_user.tag(@expense, with: params[:expense][:tag_list], on: :tags)
 
     if @expense.save
