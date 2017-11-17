@@ -12,7 +12,6 @@ initializeDatepicker = (element) ->
     clearBtn: true
     disableTouchKeyboard: true
     format: 'yyyy-mm-dd'
-    orientation: 'top auto'
     todayBtn: true
     todayHighlight: true
 
