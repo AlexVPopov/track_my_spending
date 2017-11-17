@@ -76,7 +76,7 @@ $.fn.dataTable.ext.type.order['currency-bg-pre'] = parseCurrency
 
 sumCurrency = (a, b) -> parseCurrency(a) + parseCurrency(b)
 
-$ ->
+$(document).on 'turbolinks:load', ->
   api = initializeDateTable $('.datatable')
 
   $('#search').on 'keyup', -> api.search(@value).draw()
