@@ -26,7 +26,6 @@ gem 'omniauth-facebook'
 gem 'pg'
 gem 'puma'
 gem 'rails', '5.1.4'
-gem 'rails_12factor', group: :production
 gem 'sass-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slim-rails'
