@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '2.4.1'
+ruby '2.5.0'
 gem 'acts-as-taggable-on'
 gem 'attr_extras'
 gem 'bootstrap-datepicker-rails'
