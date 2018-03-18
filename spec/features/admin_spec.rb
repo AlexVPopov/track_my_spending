@@ -8,6 +8,12 @@ feature 'Access to admin dashboard' do
 
     background { login_as(user, scope: :user) }
 
+    scenario "they don't see a link to the admin dashboard" do
+      visit authenticated_root_path
+
+      expect(page).not_to have_content('Admin panel')
+    end
+
     scenario 'they get redirected to the root page' do
       visit admin_root_path
 
@@ -21,7 +27,9 @@ feature 'Access to admin dashboard' do
     background { login_as(user, scope: :user) }
 
     scenario 'they are given access to the admin dashboard' do
-      visit admin_root_path
+      visit authenticated_root_path
+
+      click_link 'Admin panel'
 
       expect(page.current_path).to eq admin_root_path
     end
