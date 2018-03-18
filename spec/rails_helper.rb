@@ -14,6 +14,7 @@ require 'money-rails/test_helpers'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'capybara/poltergeist'
+require 'capybara-screenshot/rspec'
 require 'database_cleaner'
 
 ActiveRecord::Migration.maintain_test_schema!
@@ -45,3 +46,5 @@ Shoulda::Matchers.configure do |config|
 end
 
 Capybara.javascript_driver = :poltergeist
+Capybara.asset_host = 'http://localhost:3000'
+Capybara::Screenshot.prune_strategy = :keep_last_run

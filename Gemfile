@@ -2,7 +2,8 @@
 
 source 'https://rubygems.org'
 
-ruby '2.4.1'
+ruby '2.5.0'
+gem 'activeadmin'
 gem 'acts-as-taggable-on'
 gem 'attr_extras'
 gem 'bootstrap-datepicker-rails'
@@ -25,7 +26,7 @@ gem 'newrelic_rpm'
 gem 'omniauth-facebook'
 gem 'pg'
 gem 'puma'
-gem 'rails', '5.1.4'
+gem 'rails'
 gem 'sass-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slim-rails'
@@ -51,6 +52,7 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'capybara-screenshot'
   gem 'database_cleaner'
   gem 'poltergeist'
   gem 'rails-controller-testing'
