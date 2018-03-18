@@ -7,7 +7,6 @@ RSpec.describe Expense, type: :model do
 
   context 'validations' do
     it { is_expected.to validate_presence_of(:date) }
-    it { is_expected.to validate_presence_of(:user) }
   end
 
   context 'associations' do

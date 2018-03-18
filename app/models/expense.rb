@@ -8,7 +8,6 @@ class Expense < ApplicationRecord
   belongs_to :user
 
   validates :date, presence: true
-  validates :user, presence: true
 
   after_initialize { |expense| expense.date ||= Time.zone.today }
 

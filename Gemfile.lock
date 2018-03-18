@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/thoughtbot/shoulda-matchers.git
-  revision: 4d17faee7d6ba4cd577481d1910c1c6512e937b5
+  revision: e35f083b88c5fbccd319cd4fcfff57ceae6076f2
   branch: master
   specs:
     shoulda-matchers (3.1.2)
