@@ -25,7 +25,7 @@ gem 'newrelic_rpm'
 gem 'omniauth-facebook'
 gem 'pg'
 gem 'puma'
-gem 'rails', '5.1.4'
+gem 'rails'
 gem 'sass-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slim-rails'
