@@ -20,7 +20,12 @@ html lang="en"
       .container
         .navbar-header.pull-left
           = link_to 'TrackMySpending', authenticated_root_path, class: 'navbar-brand'
-        .navbar-header.pull-right
+        .navbar-nav.pull-right
+          - if current_user.admin?
+            = link_to "#{glyph('scissors')} Admin panel".html_safe,
+                    admin_root_path,
+                    type: 'button',
+                    class: 'btn bnt-default navbar-btn'
           = link_to "#{glyph('log-out')} Sign out".html_safe,
                     destroy_user_session_path,
                     type: 'button',

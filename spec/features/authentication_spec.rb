@@ -29,6 +29,7 @@ feature 'Sign out' do
 
   scenario 'User can successfully sign out and is redirected to login page' do
     visit authenticated_root_path
+
     click_link 'Sign out'
 
     expect(page.current_path).to eq unauthenticated_root_path
