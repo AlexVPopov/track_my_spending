@@ -12,4 +12,6 @@ Rails.application.routes.draw do
 
     unauthenticated { root 'devise/sessions#new', as: :unauthenticated_root }
   end
+
+  get '*path' => redirect('/')
 end
